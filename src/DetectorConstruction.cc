@@ -1,38 +1,10 @@
-//
-// ********************************************************************
-// * License and Disclaimer                                           *
-// *                                                                  *
-// * The  Geant4 software  is  copyright of the Copyright Holders  of *
-// * the Geant4 Collaboration.  It is provided  under  the terms  and *
-// * conditions of the Geant4 Software License,  included in the file *
-// * LICENSE and available at  http://cern.ch/geant4/license .  These *
-// * include a list of copyright holders.                             *
-// *                                                                  *
-// * Neither the authors of this software system, nor their employing *
-// * institutes,nor the agencies providing financial support for this *
-// * work  make  any representation or  warranty, express or implied, *
-// * regarding  this  software system or assume any liability for its *
-// * use.  Please see the license in the file  LICENSE  and URL above *
-// * for the full disclaimer and the limitation of liability.         *
-// *                                                                  *
-// * This  code  implementation is the result of  the  scientific and *
-// * technical work of the GEANT4 collaboration.                      *
-// * By using,  copying,  modifying or  distributing the software (or *
-// * any work based  on the software)  you  agree  to acknowledge its *
-// * use  in  resulting  scientific  publications,  and indicate your *
-// * acceptance of all terms of the Geant4 Software license.          *
-// ********************************************************************
-//
-//
-/// \file DetectorConstruction.cc
-/// \brief Implementation of the B1::DetectorConstruction class
 
-#include "DetectorConstruction.hh"
+#include "DetectorConstruction.hh" //! 本文件的源文件
 
 #include "G4RunManager.hh"
-#include "G4NistManager.hh"
-#include "G4Box.hh"
-#include "G4Cons.hh"
+#include "G4NistManager.hh"//! 用于访问材料库
+#include "G4Box.hh"//! 用于创建长方体
+#include "G4Cons.hh"//! 用于创建圆锥体
 #include "G4Orb.hh"
 #include "G4Sphere.hh"
 #include "G4Trd.hh"
@@ -54,50 +26,59 @@ DetectorConstruction::~DetectorConstruction()
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
+//* g4中探测器的设置需要重写Construct函数
 G4VPhysicalVolume* DetectorConstruction::Construct()
 {
   // Get nist material manager
+  //* 建立材料库的访问对象，可以通过该对象使用库里面的所有材料
+  //* 类似于Manager类的调用，这里调用了G4NistManager的静态类Instance方法实现对象的创建
   G4NistManager* nist = G4NistManager::Instance();
 
-  // Envelope parameters
-  //
+  // Envelope parameters(外壳参数？)
+  // g4的基本数据类型可以带单位
   G4double env_sizeXY = 20*cm, env_sizeZ = 30*cm;
+  //* 通过材料库来创建一个的材料对象
   G4Material* env_mat = nist->FindOrBuildMaterial("G4_WATER");
 
-  // Option to switch on/off checking of volumes overlaps
+  // Option to switch on/off checking of volumes overlaps（一个用于检查是否有体积重叠的bool）
   //
   G4bool checkOverlaps = true;
 
   //
-  // World
+  // todo: 1.World
+  // todo:  世界world就是创建一个能够容纳所有内容的空间
   //
   G4double world_sizeXY = 1.2*env_sizeXY;
   G4double world_sizeZ  = 1.2*env_sizeZ;
   G4Material* world_mat = nist->FindOrBuildMaterial("G4_AIR");
-
+  //* 使用G4Box创建一个长方体的空间
   G4Box* solidWorld =
     new G4Box("World",                       //its name
        0.5*world_sizeXY, 0.5*world_sizeXY, 0.5*world_sizeZ);     //its size
-
+  //* 我们创建的这个长方体空间用什么材料填充，这需要用逻辑体去控制
   G4LogicalVolume* logicWorld =
-    new G4LogicalVolume(solidWorld,          //its solid
-                        world_mat,           //its material
-                        "World");            //its name
-
+    new G4LogicalVolume(solidWorld,          //its solid：链接对应的空间（实体）
+                        world_mat,           //its material：对应空间的填充材料
+                        "World");            //*its name：这里的name只是一种标识，只是为了让用户迅速分辨实体，逻辑体
+                                             //* 和物理体三者是一体的
+  //* 创建物理体，通过链接逻辑体控制实体的位置，检查是否进行组合等
   G4VPhysicalVolume* physWorld =
-    new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(),       //at (0,0,0)
-                      logicWorld,            //its logical volume
+    new G4PVPlacement(0,                     //no rotation：不进行旋转
+                      G4ThreeVector(),       //at (0,0,0)：需要定义一个G4向量去控制这个实体的位置
+                                             //* 这里相当于：G4ThreeVector g4=G4ThreeVector();该方法直接抛出一个
+                                             //* G4ThreeVector普通对象作为参数，而不用重新定义一个对象，这样实现一次性用法
+                      logicWorld,            //its logical volume：链接对应的逻辑体
                       "World",               //its name
-                      0,                     //its mother  volume
-                      false,                 //no boolean operation
-                      0,                     //copy number
-                      checkOverlaps);        //overlaps checking
+                      0,                     //its mother  volume：当这个逻辑体是想代表World的时候，设置为0
+                      false,                 //no boolean operation：不是组合体，不需要做图形运算
+                      0,                     //copy number ：不复制
+                      checkOverlaps);        //overlaps checking：检查是否有重叠
 
   //
   // Envelope
-  //
+  // todo: 2.创建一个空间，用于容纳我们的探测器
+  //* 在这里不仅需要创建探测器的形状，也要创建探测器周围的环境
+  //* 当然本案例简单得认为容纳探测器的空间就是探测器的形状
   G4Box* solidEnv =
     new G4Box("Envelope",                    //its name
         0.5*env_sizeXY, 0.5*env_sizeXY, 0.5*env_sizeZ); //its size
@@ -108,17 +89,17 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                         "Envelope");         //its name
 
   new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(),         //at (0,0,0)
+                    G4ThreeVector(),         //* at (0,0,0)：这里的位置的意思是，子体的中心在以母体中心为轴的空间中对应的坐标点
                     logicEnv,                //its logical volume
                     "Envelope",              //its name
-                    logicWorld,              //its mother  volume
+                    logicWorld,              //* its mother  volume：设置母体对应的逻辑体
                     false,                   //no boolean operation
                     0,                       //copy number
                     checkOverlaps);          //overlaps checking
 
   //
   // Shape 1
-  //
+  // todo:3.创建的真正的“障碍物？？”
   G4Material* shape1_mat = nist->FindOrBuildMaterial("G4_A-150_TISSUE");
   G4ThreeVector pos1 = G4ThreeVector(0, 2*cm, -7*cm);
 
@@ -127,6 +108,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double shape1_rminb =  0.*cm, shape1_rmaxb = 4.*cm;
   G4double shape1_hz = 3.*cm;
   G4double shape1_phimin = 0.*deg, shape1_phimax = 360.*deg;
+  //*
   G4Cons* solidShape1 =
     new G4Cons("Shape1",
     shape1_rmina, shape1_rmaxa, shape1_rminb, shape1_rmaxb, shape1_hz,
@@ -141,7 +123,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                     pos1,                    //at position
                     logicShape1,             //its logical volume
                     "Shape1",                //its name
-                    logicEnv,                //its mother  volume
+                    logicEnv,                //*its mother  volume：障碍物拿探测器当参照物一般是最好处理的
                     false,                   //no boolean operation
                     0,                       //copy number
                     checkOverlaps);          //overlaps checking
@@ -176,7 +158,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                     checkOverlaps);          //overlaps checking
 
   // Set Shape2 as scoring volume
-  //
+  //* 将逻辑体设置为我感兴趣的区域，这样g4就会自动记录这个区域的信息（能量沉积或者径迹或者在这里发生的某种相互作用的相关信息，这和探测器不一样，这是直接跟踪获取而不是探测得到的）
   fScoringVolume = logicShape2;
 
   //

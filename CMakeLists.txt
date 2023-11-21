@@ -2,7 +2,7 @@
 # Setup the project
 cmake_minimum_required(VERSION 3.16...3.21)
 project(B1)
-#set(CMAKE_BUILD_TYPE Debug)
+
 
 #----------------------------------------------------------------------------
 # Find Geant4 package, activating all available UI and Vis drivers by default
@@ -33,6 +33,8 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
+set(CMAKE_BUILD_TYPE Debug)
+
 add_executable(exampleB1 exampleB1.cc ${sources} ${headers})
 target_link_libraries(exampleB1 ${Geant4_LIBRARIES})
 

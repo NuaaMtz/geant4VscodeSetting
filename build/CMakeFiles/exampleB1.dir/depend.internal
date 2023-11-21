@@ -4,7 +4,7 @@
 CMakeFiles/exampleB1.dir/exampleB1.cc.o
  ../include/ActionInitialization.hh
  ../include/DetectorConstruction.hh
- /home/mtzmo/workstation/geant4/B1/exampleB1.cc
+ /home/mtzmo/workstation/geant4/basic/B1/exampleB1.cc
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Plane3D.h
@@ -376,7 +376,7 @@ CMakeFiles/exampleB1.dir/src/ActionInitialization.cc.o
  ../include/PrimaryGeneratorAction.hh
  ../include/RunAction.hh
  ../include/SteppingAction.hh
- /home/mtzmo/workstation/geant4/B1/src/ActionInitialization.cc
+ /home/mtzmo/workstation/geant4/basic/B1/src/ActionInitialization.cc
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Units/PhysicalConstants.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Units/SystemOfUnits.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Utility/defs.h
@@ -420,7 +420,7 @@ CMakeFiles/exampleB1.dir/src/ActionInitialization.cc.o
  /opt/geant4/geant4-install/include/Geant4/tls.hh
 CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o
  ../include/DetectorConstruction.hh
- /home/mtzmo/workstation/geant4/B1/src/DetectorConstruction.cc
+ /home/mtzmo/workstation/geant4/basic/B1/src/DetectorConstruction.cc
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Plane3D.h
@@ -718,7 +718,7 @@ CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o
 CMakeFiles/exampleB1.dir/src/EventAction.cc.o
  ../include/EventAction.hh
  ../include/RunAction.hh
- /home/mtzmo/workstation/geant4/B1/src/EventAction.cc
+ /home/mtzmo/workstation/geant4/basic/B1/src/EventAction.cc
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Point3D.h
@@ -979,7 +979,7 @@ CMakeFiles/exampleB1.dir/src/EventAction.cc.o
  /opt/geant4/geant4-install/include/Geant4/trkgdefs.hh
 CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o
  ../include/PrimaryGeneratorAction.hh
- /home/mtzmo/workstation/geant4/B1/src/PrimaryGeneratorAction.cc
+ /home/mtzmo/workstation/geant4/basic/B1/src/PrimaryGeneratorAction.cc
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Plane3D.h
@@ -1265,7 +1265,7 @@ CMakeFiles/exampleB1.dir/src/RunAction.cc.o
  ../include/DetectorConstruction.hh
  ../include/PrimaryGeneratorAction.hh
  ../include/RunAction.hh
- /home/mtzmo/workstation/geant4/B1/src/RunAction.cc
+ /home/mtzmo/workstation/geant4/basic/B1/src/RunAction.cc
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Point3D.h
@@ -1540,7 +1540,7 @@ CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o
  ../include/DetectorConstruction.hh
  ../include/EventAction.hh
  ../include/SteppingAction.hh
- /home/mtzmo/workstation/geant4/B1/src/SteppingAction.cc
+ /home/mtzmo/workstation/geant4/basic/B1/src/SteppingAction.cc
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /opt/geant4/geant4-install/include/Geant4/CLHEP/Geometry/Point3D.h

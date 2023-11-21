@@ -1,31 +1,4 @@
-//
-// ********************************************************************
-// * License and Disclaimer                                           *
-// *                                                                  *
-// * The  Geant4 software  is  copyright of the Copyright Holders  of *
-// * the Geant4 Collaboration.  It is provided  under  the terms  and *
-// * conditions of the Geant4 Software License,  included in the file *
-// * LICENSE and available at  http://cern.ch/geant4/license .  These *
-// * include a list of copyright holders.                             *
-// *                                                                  *
-// * Neither the authors of this software system, nor their employing *
-// * institutes,nor the agencies providing financial support for this *
-// * work  make  any representation or  warranty, express or implied, *
-// * regarding  this  software system or assume any liability for its *
-// * use.  Please see the license in the file  LICENSE  and URL above *
-// * for the full disclaimer and the limitation of liability.         *
-// *                                                                  *
-// * This  code  implementation is the result of  the  scientific and *
-// * technical work of the GEANT4 collaboration.                      *
-// * By using,  copying,  modifying or  distributing the software (or *
-// * any work based  on the software)  you  agree  to acknowledge its *
-// * use  in  resulting  scientific  publications,  and indicate your *
-// * acceptance of all terms of the Geant4 Software license.          *
-// ********************************************************************
-//
-//
-/// \file RunAction.hh
-/// \brief Definition of the B1::RunAction class
+
 
 #ifndef B1RunAction_h
 #define B1RunAction_h 1
@@ -50,13 +23,15 @@ class RunAction : public G4UserRunAction
   public:
     RunAction();
     ~RunAction() override;
-
+    //* 这是设置开始模拟的时候要做的事情（每个粒子运行一次）
     void BeginOfRunAction(const G4Run*) override;
+    //* 这里设置模拟结束的时候要做的事情（每个粒子运行一次）
     void   EndOfRunAction(const G4Run*) override;
-
+    //* 对每个粒子追踪的值进行处理（这里只是将能量沉淀值乘方）
     void AddEdep (G4double edep);
 
   private:
+    //* 这里记录沉积的能量对应的变量（对每个粒子都通用）
     G4Accumulable<G4double> fEdep = 0.;
     G4Accumulable<G4double> fEdep2 = 0.;
 };

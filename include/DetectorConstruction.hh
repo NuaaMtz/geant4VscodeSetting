@@ -1,31 +1,4 @@
-//
-// ********************************************************************
-// * License and Disclaimer                                           *
-// *                                                                  *
-// * The  Geant4 software  is  copyright of the Copyright Holders  of *
-// * the Geant4 Collaboration.  It is provided  under  the terms  and *
-// * conditions of the Geant4 Software License,  included in the file *
-// * LICENSE and available at  http://cern.ch/geant4/license .  These *
-// * include a list of copyright holders.                             *
-// *                                                                  *
-// * Neither the authors of this software system, nor their employing *
-// * institutes,nor the agencies providing financial support for this *
-// * work  make  any representation or  warranty, express or implied, *
-// * regarding  this  software system or assume any liability for its *
-// * use.  Please see the license in the file  LICENSE  and URL above *
-// * for the full disclaimer and the limitation of liability.         *
-// *                                                                  *
-// * This  code  implementation is the result of  the  scientific and *
-// * technical work of the GEANT4 collaboration.                      *
-// * By using,  copying,  modifying or  distributing the software (or *
-// * any work based  on the software)  you  agree  to acknowledge its *
-// * use  in  resulting  scientific  publications,  and indicate your *
-// * acceptance of all terms of the Geant4 Software license.          *
-// ********************************************************************
-//
-//
-/// \file DetectorConstruction.hh
-/// \brief Definition of the B1::DetectorConstruction class
+
 
 #ifndef B1DetectorConstruction_h
 #define B1DetectorConstruction_h 1
@@ -40,20 +13,26 @@ class G4LogicalVolume;
 
 namespace B1
 {
-
-class DetectorConstruction : public G4VUserDetectorConstruction
-{
+  //* 新建一个类DetctorConstruction，并且继承G4VUserDetectorConstruction的public部分
+  //* 注意：作为g4框架使用者，我们使用的每一个类 **都要** 继承自g4框架中的对应类
+  class DetectorConstruction : public G4VUserDetectorConstruction
+  {
   public:
+    // 构造函数,基函数的构造也为缺省。
+    // G4VUserDetectorConstruction的构造函数不是虚函数，所以这里不用override
+    // 如果不是构造而是普通的成员函数，不用虚函数定义意味着这个函数将能够在其派生类中通用地使用
     DetectorConstruction();
-    ~DetectorConstruction() override;
-
-    G4VPhysicalVolume* Construct() override;
-
-    G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; }
+    // G4VUserDetectorConstruction的析构函数为虚函数，所以这里重写其函数的时候要用override
+    ~DetectorConstruction() override; //
+    // 作为用户接触的主要函数，需要重写的内容都在这里面了
+    G4VPhysicalVolume *Construct() override;
+    // 用来给外部函数获取我们关心区域的地方
+    G4LogicalVolume *GetScoringVolume() const { return fScoringVolume; }
 
   protected:
-    G4LogicalVolume* fScoringVolume = nullptr;
-};
+    // 在construc中用来记录的我们关心的区域，只限于这个类内部使用，而留下了GetScoringVolume函数给外部访问
+    G4LogicalVolume *fScoringVolume = nullptr;
+  };
 
 }
 

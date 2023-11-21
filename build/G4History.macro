@@ -63,7 +63,3 @@
 /vis/viewer/set/autoRefresh true
 /vis/viewer/refresh
 /vis/verbose warnings
-/vis/set/touchable World 0 Envelope 0 Shape1 0
-/vis/viewer/select viewer-0 (OpenGLStoredQt)
-/vis/set/touchable World 0 Envelope 0 Shape1 0
-/vis/viewer/select viewer-0 (OpenGLStoredQt)

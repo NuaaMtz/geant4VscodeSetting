@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mtzmo/workstation/geant4/B1/exampleB1.cc" "/home/mtzmo/workstation/geant4/B1/build/CMakeFiles/exampleB1.dir/exampleB1.cc.o"
-  "/home/mtzmo/workstation/geant4/B1/src/ActionInitialization.cc" "/home/mtzmo/workstation/geant4/B1/build/CMakeFiles/exampleB1.dir/src/ActionInitialization.cc.o"
-  "/home/mtzmo/workstation/geant4/B1/src/DetectorConstruction.cc" "/home/mtzmo/workstation/geant4/B1/build/CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o"
-  "/home/mtzmo/workstation/geant4/B1/src/EventAction.cc" "/home/mtzmo/workstation/geant4/B1/build/CMakeFiles/exampleB1.dir/src/EventAction.cc.o"
-  "/home/mtzmo/workstation/geant4/B1/src/PrimaryGeneratorAction.cc" "/home/mtzmo/workstation/geant4/B1/build/CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o"
-  "/home/mtzmo/workstation/geant4/B1/src/RunAction.cc" "/home/mtzmo/workstation/geant4/B1/build/CMakeFiles/exampleB1.dir/src/RunAction.cc.o"
-  "/home/mtzmo/workstation/geant4/B1/src/SteppingAction.cc" "/home/mtzmo/workstation/geant4/B1/build/CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o"
+  "/home/mtzmo/workstation/geant4/basic/B1/exampleB1.cc" "/home/mtzmo/workstation/geant4/basic/B1/build/CMakeFiles/exampleB1.dir/exampleB1.cc.o"
+  "/home/mtzmo/workstation/geant4/basic/B1/src/ActionInitialization.cc" "/home/mtzmo/workstation/geant4/basic/B1/build/CMakeFiles/exampleB1.dir/src/ActionInitialization.cc.o"
+  "/home/mtzmo/workstation/geant4/basic/B1/src/DetectorConstruction.cc" "/home/mtzmo/workstation/geant4/basic/B1/build/CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o"
+  "/home/mtzmo/workstation/geant4/basic/B1/src/EventAction.cc" "/home/mtzmo/workstation/geant4/basic/B1/build/CMakeFiles/exampleB1.dir/src/EventAction.cc.o"
+  "/home/mtzmo/workstation/geant4/basic/B1/src/PrimaryGeneratorAction.cc" "/home/mtzmo/workstation/geant4/basic/B1/build/CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o"
+  "/home/mtzmo/workstation/geant4/basic/B1/src/RunAction.cc" "/home/mtzmo/workstation/geant4/basic/B1/build/CMakeFiles/exampleB1.dir/src/RunAction.cc.o"
+  "/home/mtzmo/workstation/geant4/basic/B1/src/SteppingAction.cc" "/home/mtzmo/workstation/geant4/basic/B1/build/CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

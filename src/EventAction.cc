@@ -37,7 +37,7 @@ namespace B1
 {
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
+//* 相当于形参RunAction赋值给私有的成员变量fRunAction
 EventAction::EventAction(RunAction* runAction)
 : fRunAction(runAction)
 {}
@@ -59,6 +59,7 @@ void EventAction::BeginOfEventAction(const G4Event*)
 void EventAction::EndOfEventAction(const G4Event*)
 {
   // accumulate statistics in run action
+  //* 调用RunAction的AddEdep函数，告诉程序我们定义得fEdep变量为能量沉积值
   fRunAction->AddEdep(fEdep);
 }
 

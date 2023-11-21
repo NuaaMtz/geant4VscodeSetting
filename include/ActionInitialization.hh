@@ -1,31 +1,4 @@
-//
-// ********************************************************************
-// * License and Disclaimer                                           *
-// *                                                                  *
-// * The  Geant4 software  is  copyright of the Copyright Holders  of *
-// * the Geant4 Collaboration.  It is provided  under  the terms  and *
-// * conditions of the Geant4 Software License,  included in the file *
-// * LICENSE and available at  http://cern.ch/geant4/license .  These *
-// * include a list of copyright holders.                             *
-// *                                                                  *
-// * Neither the authors of this software system, nor their employing *
-// * institutes,nor the agencies providing financial support for this *
-// * work  make  any representation or  warranty, express or implied, *
-// * regarding  this  software system or assume any liability for its *
-// * use.  Please see the license in the file  LICENSE  and URL above *
-// * for the full disclaimer and the limitation of liability.         *
-// *                                                                  *
-// * This  code  implementation is the result of  the  scientific and *
-// * technical work of the GEANT4 collaboration.                      *
-// * By using,  copying,  modifying or  distributing the software (or *
-// * any work based  on the software)  you  agree  to acknowledge its *
-// * use  in  resulting  scientific  publications,  and indicate your *
-// * acceptance of all terms of the Geant4 Software license.          *
-// ********************************************************************
-//
-//
-/// \file ActionInitialization.hh
-/// \brief Definition of the B1::ActionInitialization class
+
 
 #ifndef B1ActionInitialization_h
 #define B1ActionInitialization_h 1
@@ -37,15 +10,18 @@
 namespace B1
 {
 
-class ActionInitialization : public G4VUserActionInitialization
-{
+  class ActionInitialization : public G4VUserActionInitialization
+  {
   public:
     ActionInitialization();
     ~ActionInitialization() override;
-
+    //* 为什么要设置两个成员函数？
+    //* 1.BuildFroMaster函数是负责主线程调用，也就是说在内部的设置仅仅运行一次，而且对其他工作线程是通用的。
+    //* 2.Build并行线程，负责对单独的线程做特定的动作。
+    //* 从语法上来说，这里的const意味着该函数不能修改类（包括基类）的成员变量，只能读取。
     void BuildForMaster() const override;
     void Build() const override;
-};
+  };
 
 }
 
