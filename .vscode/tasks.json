@@ -1,0 +1,43 @@
+{   
+	// 只是个参数，可以随便写
+    "version": "2.0.0",
+	// 选项，这里的意思是进入build目录，再进行其他的行为
+    "options": {
+        "cwd": "${workspaceFolder}/build"
+    },
+	// 任务列表：具体的编译命令，也就是cmake .. 和make
+    "tasks": [
+        {
+			// 编写cmake ..脚本命令
+            "type": "shell",
+            "label": "cmake",
+            "command": "cmake",
+            "args": [
+                ".."
+            ]
+        },
+			// 编写make命令
+        {
+            "label": "make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "make",
+            "args": [
+
+            ]
+        },
+			//	一个总结的命令，一个命令调用上面的两个命令。
+			//  lauch.json文件执行默认为F5，因此要再lauch中将这个总结命令传输过去执行
+        {
+            "label": "Build",
+			"dependsOrder": "sequence", // 按列出的顺序执行任务依赖项
+            "dependsOn":[
+                "cmake",
+                "make"
+            ]
+        }
+    ]
+
+}

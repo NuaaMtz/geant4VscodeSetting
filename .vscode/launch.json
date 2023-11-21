@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // 名字，随便写。gdb表示这个是debug的命令
+            "name": "gdb",
+            // 调试器的类型，这里是gdb（C++）
+            "type": "cppdbg",
+            // 启动新的终端
+            "request": "launch",
+            // 调试的目标文件《----------------这是要修改的地方之一
+            "program": "${workspaceFolder}/build/exampleB1",
+            "cwd": "${workspaceFolder}",
+            // 产生可执行性文件《----------------这是要修改的地方之二
+            "preLaunchTask": "Build", 
+            // gdb的配置文件
+            "miDebuggerPath": "/usr/bin/gdb",
+            // gdb的配置文件
+            "miDebuggerArgs": "-q -d",
+            // gdb的配置文件
+            "setupCommands": [
+                {
+                    // gdb的配置文件
+                    "description": "Enable pretty-printing for gdb",
+                    // gdb的配置文件
+                    "text": "-enable-pretty-printing",
+                    // gdb的配置文件
+                    "ignoreFailures": true
+                }
+            ],
+            
+
+        }
+    ]
+}
